@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Root document</title>
+    <script src="./popup-service.js"></script>
+    <script>
+        const init = () => {
+            const popupService = new window.services.PopupService();
+
+            window.addEventListener('message', event => {
+                if (event.data !== 'OPEN IT UP') {
+                    return;
+                }
+                popupService.openPopup();
+            });
+        };
+    </script>
+</head>
+<body onload="init()">
+    <iframe src="./inner.html"></iframe>
+</body>
+</html>
